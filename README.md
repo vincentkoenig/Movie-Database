@@ -1,4 +1,4 @@
-# Movie-Database
+# 🎬 Movie Database (Python CLI Project)
 
 Eine einfache **Film-Datenbank als Command Line Interface (CLI)**, geschrieben in Python.  
 Das Programm ermöglicht es, Filme zu speichern, zu verwalten und nach verschiedenen Kriterien zu analysieren.
@@ -7,7 +7,7 @@ Dieses Projekt ist Teil meines Lernwegs zum **AI / Software Engineer**.
 
 ---
 
-## Features
+## 🚀 Features
 
 - Filme hinzufügen
 - Filme löschen
@@ -23,7 +23,7 @@ Dieses Projekt ist Teil meines Lernwegs zum **AI / Software Engineer**.
 
 ---
 
-## Funktionsweise
+## 🧠 Funktionsweise
 
 Die Filme werden in einer **JSON-Datei (`movies.json`) gespeichert**.
 
@@ -41,37 +41,46 @@ Beispielstruktur:
   }
 }
 
-## Projektstruktur
-movie-project/
+Jeder Film enthält:
+
+Titel
+
+Bewertung
+
+Erscheinungsjahr
+
+Die Daten werden beim Start des Programms geladen und nach Änderungen wieder gespeichert.
+
+📂 Projektstruktur
+movie-database/
 │
 ├── main.py
 ├── movie_storage.py
 ├── movies.json
 └── README.md
-
-## Dateien
+Dateien
 
 main.py
 
-Steuert das gesamte Programm und die Benutzerinteraktion.
+Steuert das gesamte Programm und die Benutzerinteraktion über ein Menü im Terminal.
 
 movie_storage.py
 
 Kümmert sich um:
 
-Laden der Filme
+Laden der Filme aus der JSON-Datei
 
 Speichern der Filme
 
-Hinzufügen
+Hinzufügen neuer Filme
 
-Löschen
+Löschen von Filmen
 
-Aktualisieren
+Aktualisieren von Bewertungen
 
 movies.json
 
-Speichert die Filmdaten.
+Speichert dauerhaft alle Filmdaten.
 
 ⚙️ Installation
 1️⃣ Python installieren
@@ -80,26 +89,27 @@ Falls Python noch nicht installiert ist:
 
 https://www.python.org/downloads/
 
-2️⃣ Projekt klonen
+2️⃣ Repository klonen
 git clone https://github.com/vincentkoenig/movie-database.git
 
-oder herunterladen.
+oder das Repository als ZIP herunterladen.
 
 3️⃣ Abhängigkeiten installieren
 
-Das Projekt nutzt:
-
-matplotlib
+Das Projekt nutzt Matplotlib für die Erstellung eines Histogramms.
 
 Installation:
 
 pip install matplotlib
 ▶️ Projekt starten
 
-Navigiere in den Projektordner und starte:
+Navigiere im Terminal in den Projektordner und starte das Programm:
 
 python main.py
 🖥️ Menü im Programm
+
+Nach dem Start erscheint ein Menü im Terminal:
+
 ********** My Movies Database **********
 
 1. List movies
@@ -114,10 +124,13 @@ python main.py
 10. Sort by year
 11. Generate histogram
 0. Exit
-📊 Beispiel Funktionen
+
+Der Nutzer kann eine Zahl eingeben, um die gewünschte Funktion auszuführen.
+
+🔎 Beispiel Funktionen
 Filme filtern
 
-Du kannst Filme filtern nach:
+Filme können nach folgenden Kriterien gefiltert werden:
 
 Mindestbewertung
 
@@ -127,16 +140,29 @@ Endjahr
 
 Beispiel:
 
-Enter minimum rating: 8
-Enter start year: 2000
-Enter end year:
+Enter minimum rating (leave blank for no minimum rating): 8
+Enter start year (leave blank for no start year): 2000
+Enter end year (leave blank for no end year):
 Chronologische Sortierung
 
-Der Nutzer kann entscheiden:
+Der Nutzer kann entscheiden, ob:
+
+die neuesten Filme zuerst
+
+oder die ältesten Filme zuerst
+
+angezeigt werden.
 
 Show newest movies first? (y/n)
-📈 Histogramm der Bewertungen
+Zufälliger Film
 
-Das Programm kann automatisch ein Diagramm erstellen:
+Das Programm kann auch einen zufälligen Film aus der Datenbank auswählen:
+
+Your movie for tonight: Inception, it's rated 8.8
+📊 Histogramm der Bewertungen
+
+Mit Hilfe von Matplotlib kann ein Diagramm erstellt werden, das die Verteilung der Bewertungen zeigt.
+
+Das Bild wird automatisch gespeichert, zum Beispiel als:
 
 ratings_histogram.png
