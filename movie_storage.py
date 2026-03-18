@@ -32,9 +32,22 @@ def save_movies(movies):
 
 
 def add_movie(title, year, rating):
-    """Fügt einen Film hinzu und speichert die Daten."""
+    """Fügt einen Film hinzu, wenn er noch nicht existiert."""
     movies = get_movies()
-    movies.append({"title": title, "year": year, "rating": rating})
+
+    # Prüfen ob Film bereits existiert
+    for movie in movies:
+        if movie["title"].lower() == title.lower():
+            print(f"Movie '{title}' already exists!")
+            return
+
+    # Wenn nicht vorhanden → hinzufügen
+    movies.append({
+        "title": title,
+        "year": year,
+        "rating": rating
+    })
+
     save_movies(movies)
 
 
