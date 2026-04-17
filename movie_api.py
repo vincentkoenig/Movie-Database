@@ -21,5 +21,6 @@ def fetch_movie_data(title):
         "year": int(data["Year"]),
         "rating": float(data["imdbRating"]),
         "poster": data["Poster"],
-        "imdb_id": data["imdbID"]
+        "imdb_id": data["imdbID"],
+        "country": data.get("Country", "").split(",")[0].strip()
     }

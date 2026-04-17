@@ -110,7 +110,8 @@ def add_a_movie():
 
     movie_storage.add_movie(movie_data["title"], movie_data["year"],
                             movie_data["rating"], movie_data["poster"],
-                            movie_data["imdb_id"], current_user["id"])
+                            movie_data["imdb_id"], movie_data["country"],
+                            current_user["id"])
     print(f"{GREEN}Movie '{movie_data['title']}' added to {current_user['name']}'s collection!{RESET}")
 
 
@@ -266,6 +267,7 @@ def generate_website():
     movies = movie_storage.get_movies(current_user["id"])
     movie_grid = ""
     for movie in movies:
+        flag = get_flag_emoji(movie.get("country", ""))
         movie_grid += f"""
         <li>
             <div class="movie">
@@ -273,7 +275,7 @@ def generate_website():
                     <img class="movie-poster" src="{movie['poster']}" alt="{movie['title']}"/>
                 </a>
                 <div class="movie-title">{movie['title']}</div>
-                <div class="movie-year">{movie['year']}</div>
+                <div class="movie-year">{movie['year']} {flag}</div>
                 <div class="movie-rating">⭐ {movie['rating']}</div>
             </div>
         </li>
@@ -291,6 +293,24 @@ def generate_website():
 def switch_user():
     """Wechselt den aktiven Nutzer."""
     select_user()
+
+
+def get_flag_emoji(country):
+    """Konvertiert einen Ländernamen in ein Flaggen-Emoji."""
+    country_to_code = {
+        "USA": "US", "United States": "US", "UK": "GB", "United Kingdom": "GB",
+        "France": "FR", "Germany": "DE", "Italy": "IT", "Spain": "ES",
+        "Japan": "JP", "South Korea": "KR", "China": "CN", "India": "IN",
+        "Australia": "AU", "Canada": "CA", "Brazil": "BR", "Mexico": "MX",
+        "Russia": "RU", "Sweden": "SE", "Denmark": "DK", "Norway": "NO",
+        "Finland": "FI", "Netherlands": "NL", "Belgium": "BE", "Austria": "AT",
+        "Switzerland": "CH", "Poland": "PL", "Czech Republic": "CZ",
+        "Portugal": "PT", "Argentina": "AR", "Ireland": "IE", "New Zealand": "NZ"
+    }
+    code = country_to_code.get(country, "")
+    if not code:
+        return ""
+    return "".join(chr(0x1F1E6 + ord(c) - ord("A")) for c in code)
 
 
 def pause():

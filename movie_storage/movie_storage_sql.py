@@ -19,7 +19,8 @@ with engine.connect() as connection:
             poster TEXT,
             user_id INTEGER NOT NULL,
             FOREIGN KEY (user_id) REFERENCES users(id),
-            imdb_id TEXT
+            imdb_id TEXT,
+            country TEXT
         )
     """))
     connection.commit()
@@ -65,22 +66,23 @@ def get_movies(user_id):
     """Gibt alle Filme eines Nutzers zurück."""
     with engine.connect() as connection:
         result = connection.execute(
-            text("SELECT title, year, rating, poster, imdb_id FROM movies WHERE user_id = :user_id"),
+            text("SELECT title, year, rating, poster, imdb_id, country FROM movies WHERE user_id = :user_id"),
             {"user_id": user_id}
         )
-        return [{"title": row[0], "year": row[1], "rating": row[2], "poster": row[3], "imdb_id": row[4]}
+        return [{"title": row[0], "year": row[1], "rating": row[2], "poster": row[3],
+                 "imdb_id": row[4], "country": row[5]}
                 for row in result.fetchall()]
 
 
-def add_movie(title, year, rating, poster, imdb_id, user_id):
+def add_movie(title, year, rating, poster, imdb_id, country, user_id):
     """Fügt einen Film für einen bestimmten Nutzer hinzu."""
     with engine.connect() as connection:
         try:
             connection.execute(
-                text("INSERT INTO movies (title, year, rating, poster, imdb_id, user_id) "
-                     "VALUES (:title, :year, :rating, :poster, :imdb_id, :user_id)"),
-                {"title": title, "year": year, "rating": rating,
-                 "poster": poster, "imdb_id": imdb_id, "user_id": user_id}
+                text("INSERT INTO movies (title, year, rating, poster, imdb_id, country, user_id) "
+                     "VALUES (:title, :year, :rating, :poster, :imdb_id, :country, :user_id)"),
+                {"title": title, "year": year, "rating": rating, "poster": poster,
+                 "imdb_id": imdb_id, "country": country, "user_id": user_id}
             )
             connection.commit()
         except Exception as e:
