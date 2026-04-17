@@ -110,7 +110,7 @@ def add_a_movie():
 
     movie_storage.add_movie(movie_data["title"], movie_data["year"],
                             movie_data["rating"], movie_data["poster"],
-                            current_user["id"])
+                            movie_data["imdb_id"], current_user["id"])
     print(f"{GREEN}Movie '{movie_data['title']}' added to {current_user['name']}'s collection!{RESET}")
 
 
@@ -269,7 +269,9 @@ def generate_website():
         movie_grid += f"""
         <li>
             <div class="movie">
-                <img class="movie-poster" src="{movie['poster']}" alt="{movie['title']}"/>
+                <a href="https://www.imdb.com/title/{movie['imdb_id']}" target="_blank">
+                    <img class="movie-poster" src="{movie['poster']}" alt="{movie['title']}"/>
+                </a>
                 <div class="movie-title">{movie['title']}</div>
                 <div class="movie-year">{movie['year']}</div>
                 <div class="movie-rating">⭐ {movie['rating']}</div>
