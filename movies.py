@@ -272,6 +272,7 @@ def generate_website():
                 <img class="movie-poster" src="{movie['poster']}" alt="{movie['title']}"/>
                 <div class="movie-title">{movie['title']}</div>
                 <div class="movie-year">{movie['year']}</div>
+                <div class="movie-rating">⭐ {movie['rating']}</div>
             </div>
         </li>
         """
