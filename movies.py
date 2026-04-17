@@ -1,4 +1,4 @@
-import movie_storage_sql as movie_storage
+from movie_storage import movie_storage_sql as movie_storage
 import movie_api
 import statistics
 import random
