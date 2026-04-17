@@ -233,6 +233,33 @@ def get_a_histogram():
     print(f"{GREEN}Histogram saved as {filename}{RESET}")
 
 
+def generate_website():
+    """Generiert eine HTML-Website aus den Filmdaten."""
+    movies = movie_storage.get_movies()
+
+    movie_grid = ""
+    for movie in movies:
+        movie_grid += f"""
+        <li>
+            <div class="movie">
+                <img class="movie-poster" src="{movie['poster']}" alt="{movie['title']}"/>
+                <div class="movie-title">{movie['title']}</div>
+                <div class="movie-year">{movie['year']}</div>
+            </div>
+        </li>
+        """
+
+    with open("index_template.html", "r") as f:
+        template = f.read()
+
+    html = template.replace("__TEMPLATE_TITLE__", "My Movie App")
+    html = html.replace("__TEMPLATE_MOVIE_GRID__", movie_grid)
+
+    with open("index.html", "w") as f:
+        f.write(html)
+
+    print(f"{GREEN}Website was generated successfully.{RESET}")
+
 def pause():
     """Pause, bis der Benutzer Enter drückt."""
     input(f"{CYAN}\nPress Enter to continue...{RESET}")
@@ -251,7 +278,8 @@ def main():
         8: filter_movies,
         9: sorted_by_rating,
         10: sorted_by_year,
-        11: get_a_histogram
+        11: get_a_histogram,
+        12: generate_website
     }
 
     while True:
@@ -261,9 +289,9 @@ def main():
             print(f"{YELLOW}{num}. {func.__name__.replace('_', ' ').capitalize()}{RESET}")
 
         try:
-            choice = int(input(f"{CYAN}\nEnter choice (0-11): {RESET}"))
+            choice = int(input(f"{CYAN}\nEnter choice (0-12): {RESET}"))
         except ValueError:
-            print(f"{RED}Please enter a valid number (0-11).{RESET}")
+            print(f"{RED}Please enter a valid number (0-12).{RESET}")
             continue
 
         if choice == 0:
