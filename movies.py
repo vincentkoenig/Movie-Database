@@ -1,4 +1,5 @@
 import movie_storage_sql as movie_storage
+import movie_api
 import statistics
 import random
 import difflib
@@ -26,40 +27,25 @@ def list_of_movies():
 
 
 def add_a_movie():
-    """Fügt einen neuen Film in die JSON-Datenbank hinzu, wenn er noch nicht existiert."""
-    movies = movie_storage.get_movies()
-
+    """Fügt einen neuen Film via OMDb API hinzu."""
     movie_input = input(f"{CYAN}Enter new movie name: {RESET}").strip()
     if not movie_input:
         print(f"{RED}Movie name cannot be empty!{RESET}")
         return
 
-    # Prüfen, ob der Film bereits existiert
+    movie_data = movie_api.fetch_movie_data(movie_input)
+    if movie_data is None:
+        return
+
+    movies = movie_storage.get_movies()
     for movie in movies:
-        if movie["title"].lower() == movie_input.lower():
-            print(f"{RED}Movie '{movie_input}' already exists!{RESET}")
+        if movie["title"].lower() == movie_data["title"].lower():
+            print(f"{RED}Movie '{movie_data['title']}' already exists!{RESET}")
             return
 
-    # Rating abfragen
-    try:
-        rating_input = float(input(f"{CYAN}Enter new movie rating (0-10): {RESET}"))
-        if not 0 <= rating_input <= 10:
-            print(f"{RED}Rating must be between 0 and 10.{RESET}")
-            return
-    except ValueError:
-        print(f"{RED}Invalid rating! Must be a number between 0 and 10.{RESET}")
-        return
-
-    # Release Year abfragen
-    try:
-        year_input = int(input(f"{CYAN}Enter the year of release: {RESET}"))
-    except ValueError:
-        print(f"{RED}Invalid year! Must be a number.{RESET}")
-        return
-
-    # Film hinzufügen
-    movie_storage.add_movie(movie_input, year_input, rating_input)
-    print(f"{GREEN}Movie '{movie_input}' successfully added!{RESET}")
+    movie_storage.add_movie(movie_data["title"], movie_data["year"],
+                            movie_data["rating"], movie_data["poster"])
+    print(f"{GREEN}Movie '{movie_data['title']}' successfully added!{RESET}")
 
 
 def delete_a_movie():
