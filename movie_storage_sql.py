@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, text
 DB_URL = "sqlite:///movies.db"
 
 # Create the engine
-engine = create_engine(DB_URL, echo=True)
+engine = create_engine(DB_URL, echo=False)
 
 # Create the movies table if it does not exist
 with engine.connect() as connection:
@@ -34,7 +34,6 @@ def add_movie(title, year, rating):
             connection.execute(text("INSERT INTO movies (title, year, rating) VALUES (:title, :year, :rating)"),
                                {"title": title, "year": year, "rating": rating})
             connection.commit()
-            print(f"Movie '{title}' added successfully.")
         except Exception as e:
             print(f"Error: {e}")
 
@@ -45,7 +44,6 @@ def delete_movie(title):
             connection.execute(text("DELETE FROM movies WHERE title = :title"),
                                {"title": title})
             connection.commit()
-            print(f"Movie '{title}' deleted successfully.")
         except Exception as e:
             print(f"Error: {e}")
 
@@ -56,6 +54,5 @@ def update_movie(title, rating):
             connection.execute(text("UPDATE movies SET rating = :rating WHERE title = :title"),
                                {"title": title, "rating": rating})
             connection.commit()
-            print(f"Movie '{title}' updated successfully.")
         except Exception as e:
             print(f"Error: {e}")
