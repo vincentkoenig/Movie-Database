@@ -1,0 +1,132 @@
+Datenstruktur der Filme
+Die Filme werden in einem Wörterbuch gespeichert, das dir in der Datei movies.py zur Verfügung gestellt wird. Jeder Schlüssel im Wörterbuch steht für den Filmtitel, und jeder Wert speichert die Bewertung des Films.
+
+Menü
+Beim ersten Start der Anwendung sollte ein Titel angezeigt werden (z. B. Meine Filmdatenbank).
+Anschließend wird ein Menü mit den verschiedenen Optionen der Anwendung angezeigt. Jede Menüoption wird mit einer Nummer versehen. Danach wird der Benutzer aufgefordert, eine Auswahl zu treffen.
+
+Beispiel:
+********** My Movies Database **********
+
+Menu:
+1. List movies
+2. Add movie
+3. Delete movie
+4. Update movie
+5. Stats
+6. Random movie
+7. Search movie
+8. Movies sorted by rating
+
+Enter choice (1-8):
+
+Das Menü
+Filme auflisten
+Gebe alle Filme zusammen mit ihrer Bewertung aus.
+Zusätzlich soll die Gesamtanzahl der Filme in der Datenbank angezeigt werden.
+Beispielausgabe:
+3 movies in total
+The Shawshank Redemption: 9.5
+Pulp Fiction: 8.8
+The Room: 3.6
+
+Film hinzufügen
+Fordere den Benutzer auf, einen Filmtitel und eine Bewertung einzugeben.
+Es ist nicht erforderlich, die Eingabe zu validieren (Bewertungen zwischen 1 und 10 werden akzeptiert).
+
+Film löschen
+Fordere den Benutzer auf, einen Filmtitel einzugeben und lösche ihn aus der Datenbank.
+Falls der Film nicht existiert, wird eine Fehlermeldung ausgegeben und anschließend das Menü erneut angezeigt.
+
+Film aktualisieren
+Fordere den Benutzer auf, einen Filmtitel einzugeben und überprüfe, ob er existiert.
+Falls der Film nicht in der Datenbank vorhanden ist, wird eine Fehlermeldung ausgegeben.
+Falls der Film existiert, wird der Benutzer aufgefordert, eine neue Bewertung einzugeben.
+Die Bewertung des Films wird dann in der Datenbank aktualisiert. Eine Validierung der Eingabe ist nicht erforderlich.
+
+Statistiken
+Gebe verschiedene Statistiken über die Filme in der Datenbank aus:
+Durchschnittliche Bewertung der Filme.
+Median der Bewertungen in der Datenbank. Weitere Informationen zur Median-Berechnung findest du hier. Achte darauf, dass sich die Berechnung bei einer geraden und ungeraden Anzahl von Filmen unterscheidet.
+Bester Film basierend auf der Bewertung. Falls es mehrere Filme mit der höchsten Bewertung gibt, werden alle ausgegeben.
+Schlechtester Film basierend auf der Bewertung. Falls es mehrere Filme mit der niedrigsten Bewertung gibt, werden alle ausgegeben.
+
+Zufälliger Film
+Gebe einen zufälligen Film aus der Datenbank zusammen mit seiner Bewertung aus.
+
+Film suchen
+Fordere den Benutzer auf, einen Teil eines Filmtitels einzugeben. Anschließend werden alle passenden Filme in der Datenbank gesucht und mit ihrer Bewertung ausgegeben.
+Hinweis: Die Suche ist nicht case-sensitiv.
+Beispiel: Wenn der Benutzer the eingibt, sollte der Film The Shawshank Redemption gefunden werden.
+Beispielausgabe:
+Enter part of movie name: the
+The Shawshank Redemption, 9.5
+The Room, 3.6
+
+Filme nach Bewertung sortiert
+Gebe alle Filme mit ihrer Bewertung in absteigender Reihenfolge aus.
+Das bedeutet, dass der bestbewertete Film zuerst und der am schlechtesten bewertete Film zuletzt angezeigt wird.
+
+Zusätzlicher Schritt (Bonus)
+Was ist ein Histogramm?
+Ein Histogramm ist eine Art Diagramm, das zeigt, wie häufig etwas innerhalb eines bestimmten Bereichs oder einer bestimmten Kategorie vorkommt. Mit anderen Worten, es hilft dabei, die Verteilung von Daten visuell darzustellen.
+Stell dir zum Beispiel vor, du möchtest zeigen, wie das Gewicht von Neugeborenen verteilt ist. Gibt es ein bestimmtes Gewicht, das häufiger vorkommt als andere?
+
+Du könntest ein Histogramm erstellen, bei dem die Gewichtsbereiche auf der x-Achse und die Anzahl der Neugeborenen in jedem Bereich auf der y-Achse dargestellt werden.
+Die Balken im Histogramm repräsentieren die Anzahl der Neugeborenen innerhalb der jeweiligen Gewichtsbereiche und zeigen somit die Verteilung der Gewichte in der Gruppe.
+
+Anforderungen
+Füge eine neue Menüoption hinzu: "Bewertungs-Histogramm erstellen".
+Diese Funktion soll ein Histogramm der Filmbewertungen erstellen.
+Dein Programm soll den Benutzer fragen, in welcher Datei das Histogramm gespeichert werden soll, und anschließend das Diagramm als Datei abspeichern.
+
+Hinweis
+Suche online nach "Histogramm Python", um mehr Informationen zur Implementierung zu finden.
+
+Bibliotheken installieren
+Für diesen Code benötigen wir die Bibliothek matplotlib.
+Da es sich um eine externe Bibliothek handelt, müsste sie normalerweise installiert werden.
+Die aktuelle Python-Version auf Codio hat matplotlib jedoch bereits vorinstalliert, sodass dieser Schritt übersprungen werden kann.
+
+
+Zusätzlicher Schritt (Bonus)
+Fuzzy String Matching
+Fuzzy String Matching ist eine Technik aus der Informatik und der Textverarbeitung, mit der ungefähre Übereinstimmungen zwischen Zeichenketten gefunden werden. Sie wird „fuzzy“ genannt, weil sie nicht nach exakten Übereinstimmungen sucht, sondern eine gewisse Anzahl an Abweichungen oder Fehlern zwischen den zu vergleichenden Zeichenketten erlaubt.
+Hast du dich jemals gefragt, wie Google deine Suchanfrage korrigiert, wenn du dich vertippst? Fuzzy String Matching ist die Lösung!
+Es gibt verschiedene Algorithmen für diese Technik, einer der bekanntesten basiert auf dem Konzept der Editierdistanz.
+
+Editierdistanz
+Die Editierdistanz, auch Levenshtein-Distanz genannt, misst die Ähnlichkeit zwischen zwei Zeichenketten. Sie gibt an, wie viele minimale Einzelzeichenänderungen erforderlich sind, um eine Zeichenkette in die andere zu überführen. Diese Änderungen können Einfügungen, Löschungen oder Ersetzungen von Zeichen sein.
+Einfach gesagt, hilft die Editierdistanz dabei zu bestimmen, wie ähnlich oder unterschiedlich zwei Zeichenketten sind, indem sie zählt, wie viele Änderungen nötig sind, um sie identisch zu machen.
+Beispiel
+Vergleichen wir die Wörter „kitten“ und „sitting“:
+Wir starten mit „kitten“:
+Ändere ‘k’ zu 's’: „sitten“ (Substitution)
+Ändere ‘e’ zu 'i’: „sittin“ (Substitution)
+Füge ‘g’ am Ende hinzu: „sitting“ (Insertion)
+Es sind 3 Änderungen erforderlich, um „kitten“ in „sitting“ zu verwandeln, daher beträgt die Editierdistanz zwischen diesen Wörtern 3.
+
+Anforderungen
+Verbessere die Funktion „Film suchen“, indem du fuzzy matching hinzufügst.
+Wenn ein Benutzer beispielsweise „Gofather“ statt „Godfather“ eingibt, sollte das Programm mitteilen, dass der Film nicht gefunden wurde, aber ähnliche Filme vorschlagen.
+
+Implementierung
+Es gibt keine vorgeschriebene Implementierung:
+Editing Distance
+Eine Möglichkeit wäre, eine eigene Funktion zur Berechnung der Editierdistanz zu schreiben. Dies ist eine großartige Übung - insbesondere, wenn du dich mit Rekursion wohlfühlst.
+Da wir jedoch in Python programmieren, können wir uns einen Vorteil zunutze machen: Bibliotheken.
+Es gibt Bibliotheken, die die Editierdistanz berechnen oder Fuzzy String Matching implementieren - recherchiere dazu online!
+Wann gilt ein Begriff als „ähnlich“?
+„Gofather“ ist ähnlich zu „Godfather“.
+Aber was ist mit „ofather“? Oder nur „father“?
+Der Schwellenwert, ab dem zwei Wörter als ähnlich gelten, ist eine Konfiguration.
+Es gibt keine eindeutige Antwort für den besten Wert - du solltest verschiedene Einstellungen testen und die beste für dein Programm wählen.
+
+
+Zusätzlicher Schritt (Bonus)
+Farben
+Derzeit ist es etwas schwierig, den Text im Terminal zu lesen, da sehr viele Informationen angezeigt werden. Eine Möglichkeit, die Lesbarkeit zu verbessern, ist die Verwendung von Farben.
+Zum Beispiel:
+Wenn der Benutzer einen Fehler verursacht, wird die Fehlermeldung rot angezeigt.
+Das Menü wird in einer anderen Farbe dargestellt.
+Die Benutzereingabe wird in einer anderen Farbe als die Programmausgabe angezeigt.
