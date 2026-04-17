@@ -1,4 +1,4 @@
-import movie_storage
+import movie_storage_sql as movie_storage
 import statistics
 import random
 import difflib
