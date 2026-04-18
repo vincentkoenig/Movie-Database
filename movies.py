@@ -280,12 +280,12 @@ def generate_website():
             </div>
         </li>
         """
-    with open("index_template.html", "r") as f:
+    with open("index_template.html", "r", encoding="utf-8") as f:
         template = f.read()
     html = template.replace("__TEMPLATE_TITLE__", f"{current_user['name']}'s Movie App")
     html = html.replace("__TEMPLATE_MOVIE_GRID__", movie_grid)
     filename = f"{current_user['name']}.html"
-    with open(filename, "w") as f:
+    with open(filename, "w", encoding="utf-8") as f:
         f.write(html)
     print(f"{GREEN}Website was generated successfully as {filename}{RESET}")
 

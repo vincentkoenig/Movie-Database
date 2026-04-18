@@ -18,9 +18,9 @@ with engine.connect() as connection:
             rating REAL NOT NULL,
             poster TEXT,
             user_id INTEGER NOT NULL,
-            FOREIGN KEY (user_id) REFERENCES users(id),
             imdb_id TEXT,
-            country TEXT
+            country TEXT,
+            FOREIGN KEY (user_id) REFERENCES users(id)
         )
     """))
     connection.commit()
