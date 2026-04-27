@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine, text
+from sqlalchemy.exc import IntegrityError
 
 DB_URL = "sqlite:///data/movies.db"
 engine = create_engine(DB_URL, echo=False)
@@ -20,6 +21,7 @@ with engine.connect() as connection:
             user_id INTEGER NOT NULL,
             imdb_id TEXT,
             country TEXT,
+            UNIQUE (title, user_id),
             FOREIGN KEY (user_id) REFERENCES users(id)
         )
     """))
@@ -40,8 +42,8 @@ def add_user(name):
             connection.execute(text("INSERT INTO users (name) VALUES (:name)"),
                                {"name": name})
             connection.commit()
-        except Exception as e:
-            print(f"Error: {e}")
+        except IntegrityError:
+            print(f"User '{name}' already exists!")
 
 
 def get_user_id(name):
@@ -85,8 +87,8 @@ def add_movie(title, year, rating, poster, imdb_id, country, user_id):
                  "imdb_id": imdb_id, "country": country, "user_id": user_id}
             )
             connection.commit()
-        except Exception as e:
-            print(f"Error: {e}")
+        except IntegrityError:
+            print(f"Movie '{title}' already exists in this collection!")
 
 
 def delete_movie(title, user_id):
