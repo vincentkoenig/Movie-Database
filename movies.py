@@ -337,11 +337,28 @@ def main():
         14: delete_user
     }
 
+    labels = {
+        1: "List movies",
+        2: "Add movie",
+        3: "Delete movie",
+        4: "Update movie",
+        5: "Stats of movies",
+        6: "Random movie",
+        7: "Search movie",
+        8: "Filter movies",
+        9: "Sorted by rating",
+        10: "Sorted by year",
+        11: "Histogram",
+        12: "Generate website",
+        13: "Switch user",
+        14: "Delete user"
+    }
+
     while True:
         print(f"{BLUE}\n********** {current_user['name']}'s Movie Database **********{RESET}")
         print(f"{YELLOW}0. Exit{RESET}")
         for num, func in actions.items():
-            print(f"{YELLOW}{num}. {func.__name__.replace('_', ' ').capitalize()}{RESET}")
+            print(f"{YELLOW}{num}. {labels[num]}{RESET}")
 
         try:
             choice = int(input(f"{CYAN}\nEnter choice (0-14): {RESET}"))
